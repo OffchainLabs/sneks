@@ -3,8 +3,10 @@ name = "sneks"
 version = "0.1.0"
 edition = "2021"
 authors = ["Offchain Labs"]
+license = "MIT OR Apache-2.0"
 homepage = "https://github.com/OffchainLabs/sneks"
 repository = "https://github.com/OffchainLabs/sneks"
+description = "simple macros for naming enum variants"
 
 [dependencies]
 convert_case = "0.6.0"
