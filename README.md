@@ -1,4 +1,3 @@
-
 ## Overview
 
 This crate provides simple proc macros for naming enum variants.
