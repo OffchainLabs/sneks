@@ -19,19 +19,17 @@ pub fn derive_simple_snake_names(input: TokenStream) -> TokenStream {
     for variant in variants {
         let name = variant.ident;
         let snek = name.to_string().to_case(Case::Snake);
-        let pat = match variant.fields {
-            Fields::Unit => "",
-            Fields::Unnamed(_) => "(..)",
-            Fields::Named(_) => " { .. }",
-        };
-        arms.extend(quote! {
-            #name #pat => #snek,
+        arms.extend(match variant.fields {
+            Fields::Unit => quote! { #name => #snek, },
+            Fields::Unnamed(..) => quote! { #name(..) => #snek, },
+            Fields::Named(..) => quote! { #name { .. } => #snek, },
         });
     }
 
     quote! {
         impl #generics #ident #generics {
             fn name(&self) -> &'static str {
+                use #ident::*;
                 match self {
                     #arms
                 }
