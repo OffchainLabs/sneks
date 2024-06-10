@@ -33,7 +33,7 @@ pub fn derive_simple_snake_names(input: TokenStream) -> TokenStream {
 
     quote! {
         impl #generics #ident #generics {
-            fn name(&self) -> &'static str {
+            pub fn name(&self) -> &'static str {
                 use #ident::*;
                 match self {
                     #arms
